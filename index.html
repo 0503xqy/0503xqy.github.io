@@ -182,7 +182,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/10/springai-vs-langchain4j/" data-id="cmbqhmrvw000418ne2pk09n4g" data-title="SpringAI与Langchain4j比较" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://example.com/2025/06/10/springai-vs-langchain4j/" data-id="cmbqiqauz0005tgneftj01kmd" data-title="SpringAI与Langchain4j比较" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -218,66 +218,54 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="JVM概述"><a href="#JVM概述" class="headerlink" title="JVM概述"></a>JVM概述</h2><p>Java虚拟机(JVM)是Java程序运行的执行环境，负责将字节码转换为机器码并执行。主要功能包括：</p>
-<ul>
-<li>类加载机制</li>
-<li>内存管理</li>
-<li>垃圾回收</li>
-<li>执行引擎</li>
-</ul>
-<h2 id="类加载机制"><a href="#类加载机制" class="headerlink" title="类加载机制"></a>类加载机制</h2><p>JVM类加载过程分为三个阶段：</p>
-<ol>
-<li>加载：查找并加载类的二进制数据</li>
-<li>链接：验证、准备和解析</li>
-<li>初始化：执行类构造器<code>&lt;clinit&gt;()</code>方法</li>
-</ol>
-<p>类加载器采用双亲委派模型：</p>
-<ul>
-<li>Bootstrap ClassLoader</li>
-<li>Extension ClassLoader</li>
-<li>Application ClassLoader</li>
-</ul>
-<h2 id="内存模型"><a href="#内存模型" class="headerlink" title="内存模型"></a>内存模型</h2><p>JVM内存主要分为以下几个区域：</p>
-<ol>
-<li>程序计数器：线程私有，记录当前线程执行位置</li>
-<li>虚拟机栈：线程私有，存储栈帧</li>
-<li>本地方法栈：线程私有，为Native方法服务</li>
-<li>堆：线程共享，存放对象实例</li>
-<li>方法区：线程共享，存储类信息、常量等</li>
-</ol>
-<h2 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h2><p>主要垃圾回收算法：</p>
-<ul>
-<li>标记-清除算法</li>
-<li>复制算法</li>
-<li>标记-整理算法</li>
-<li>分代收集算法</li>
-</ul>
-<p>垃圾收集器：</p>
-<ul>
-<li>Serial收集器</li>
-<li>Parallel收集器</li>
-<li>CMS收集器</li>
-<li>G1收集器</li>
-</ul>
-<h2 id="JVM调优"><a href="#JVM调优" class="headerlink" title="JVM调优"></a>JVM调优</h2><p>常用调优参数：</p>
-<ul>
-<li>-Xms&#x2F;-Xmx：堆初始&#x2F;最大大小</li>
-<li>-Xmn：新生代大小</li>
-<li>-XX:SurvivorRatio：Eden&#x2F;Survivor比例</li>
-<li>-XX:+UseConcMarkSweepGC：使用CMS收集器</li>
-</ul>
-<h2 id="性能监控工具"><a href="#性能监控工具" class="headerlink" title="性能监控工具"></a>性能监控工具</h2><ul>
-<li>jps：查看JVM进程</li>
-<li>jstat：监控JVM统计信息</li>
-<li>jmap：内存分析</li>
-<li>jstack：线程分析</li>
-<li>VisualVM：图形化监控工具</li>
-</ul>
+        <p>技术分享</p>
+<p>大家好，我是你的技术伙伴。在Java世界里，我们每天都在编写着优雅的代码，但你是否想过，这些代码是如何被计算机理解并执行的？答案就在于Java的“心脏”——JVM（Java Virtual Machine）。理解JVM，是从“会用Java”到“精通Java”的关键一步。今天，我们就用最通俗的语言，来一场深入JVM核心的探索之旅。</p>
+<h2 id="什么是JVM？为什么它如此重要？"><a href="#什么是JVM？为什么它如此重要？" class="headerlink" title="什么是JVM？为什么它如此重要？"></a>什么是JVM？为什么它如此重要？</h2><p>想象一下，你是一位周游世界的演讲家。如果你每到一个国家，就要把演讲稿翻译成当地语言，那将非常低效。但如果你有一位随身的“万能翻译官”，你只需要准备一份稿子，他就能在任何国家将其实时翻译给当地听众。</p>
+<p>JVM，就是Java代码的那个“万能翻译官”。</p>
+<p>我们编写的.java文件，通过编译器（javac）被编译成一种叫做“字节码”（Bytecode）的.class文件。这种字节码并非任何物理计算机能直接执行的机器码，而是一种中间语言。JVM的核心使命，就是将这种平台无关的字节码，翻译成特定操作系统和CPU能懂的机器码并执行。</p>
+<p>正是因为JVM的存在，Java才能自豪地宣称 “一次编写，到处运行”（Write Once, Run Anywhere）。</p>
+<p>一个完整的JVM主要包括三个核心部分：类加载器（Class Loader）、运行时数据区（Runtime Data Area） 和 执行引擎（Execution Engine）。我们一个一个来看。</p>
+<h2 id="第一站：类加载器-代码的搬运工"><a href="#第一站：类加载器-代码的搬运工" class="headerlink" title="第一站：类加载器 - 代码的搬运工"></a>第一站：类加载器 - 代码的搬运工</h2><p>当你的程序需要使用某个类时（比如 new User()），JVM并不会在一开始就把所有类都加载进来。它采用的是按需加载。类加载器（Class Loader）就是负责把.class文件的字节码从硬盘“搬运”到内存中的“工人”。</p>
+<p>这个搬运过程分为三个主要步骤：</p>
+<p>加载（Loading）: 这是纯粹的“搬运”。类加载器根据类的全限定名（如 com.example.User），找到对应的.class文件，读取其二进制数据，并在内存中创建一个java.lang.Class对象。这个对象就像是该类在JVM中的“身份证”。</p>
+<p>链接（Linking）: 这是“整理和校验”的过程。</p>
+<p>验证（Verification）: 确保加载进来的字节码是符合JVM规范的、安全的。就像安检员，防止恶意代码破坏JVM。</p>
+<p>准备（Preparation）: 为类的静态变量（static fields）分配内存，并设置其默认初始值。比如 static int value &#x3D; 123; 在准备阶段，value会被赋值为 0（int的默认值），而不是123。</p>
+<p>解析（Resolution）: 将代码中的符号引用（比如类名、方法名）替换为直接的内存地址引用。好比把通讯录里的“张三”这个名字，直接换成他家的门牌号，方便快速找到。</p>
+<p>初始化（Initialization）: 这是类加载的最后一步。到了这一步，JVM才真正开始执行类中定义的Java程序代码。它会执行类的<clinit>()方法（编译器自动收集所有静态变量的赋值动作和静态代码块static{}合并产生的），将静态变量赋上我们代码中写的初始值。比如，在这一步，前面提到的value才会被赋值为123。</p>
+<p>双亲委派模型（Parent Delegation Model）<br>这是一个非常经典的设计。JVM的类加载器是有层级关系的（像一个家庭）。当一个类加载器收到加载请求时，它不会自己先去加载，而是先把请求“甩锅”给它的父加载器。层层甩锅，直到最顶层的启动类加载器（Bootstrap ClassLoader）。只有当父加载器找不到时，子加载器才会自己尝试加载。</p>
+<p>这么做的好处是什么？<br>安全！ 它可以防止Java的核心API被篡改。比如，你自己写一个java.lang.String类，想替代系统自带的。在双亲委派模型下，加载请求最终会到达顶层加载器，它会加载JDK自带的String类，而你写的那个恶意String类根本没有机会被加载。</p>
+<h2 id="第二站：运行时数据区-JVM的内存帝国"><a href="#第二站：运行时数据区-JVM的内存帝国" class="headerlink" title="第二站：运行时数据区 - JVM的内存帝国"></a>第二站：运行时数据区 - JVM的内存帝国</h2><p>当类被加载后，JVM会划分出一块内存区域来存储运行时的数据。这块区域就是“运行时数据区”，它也是JVM最复杂、最核心的部分，更是JVM调优的重点关注区域。</p>
+<p>[图片描述：JVM运行时数据区结构图]</p>
+<p>它主要分为两大块：线程私有区和线程共享区。</p>
+<p>线程私有区（每个线程都有一份）<br>程序计数器（Program Counter Register）: 把它想象成代码的“书签”。它记录着当前线程正在执行的字节码指令的地址。因为Java支持多线程，每个线程都需要自己的书签来记住执行到哪了，所以它是线程私有的。</p>
+<p>Java虚拟机栈（Java Virtual Machine Stack）: 这是最常和“栈”这个词关联的地方。每个方法在被调用时，都会在虚拟机栈里创建一个“栈帧（Stack Frame）”。栈帧里存放着这个方法的局部变量表（我们定义的int a &#x3D; 1;就在这里）、操作数栈、动态链接等信息。方法调用开始，栈帧入栈；方法调用结束，栈帧出栈。我们常说的“栈溢出”（StackOverflowError）就是因为方法调用层次太深，栈帧太多把这个区域撑爆了。</p>
+<p>本地方法栈（Native Method Stack）: 和虚拟机栈类似，但它是为native方法服务的。当代码调用一个本地方法（比如用C++写的底层方法）时，就在这里管理。</p>
+<p>线程共享区（所有线程共享一份）<br>堆（Heap）: JVM内存中最大的一块！ 它的唯一使命就是存放对象实例（new出来的东西）和数组。堆是垃圾回收器（GC）进行垃圾回收的“主战场”。我们常说的“内存溢出”（OutOfMemoryError）绝大多数情况都发生在这里。</p>
+<p>方法区（Method Area）: 它存储已被虚拟机加载的类信息、常量、静态变量、即时编译器（JIT）编译后的代码等数据。可以把它看作是类的“户籍档案室”。</p>
+<p>元空间（Metaspace）: 在Java 8及以后，方法区的实现变成了“元空间”。它最大的特点是使用本地内存（Native Memory），而不是JVM自身的内存。这样做的好处是，只要你的物理机内存足够大，就不太容易发生方法区的内存溢出。</p>
+<h2 id="第三站：执行引擎-JVM的CPU"><a href="#第三站：执行引擎-JVM的CPU" class="headerlink" title="第三站：执行引擎 - JVM的CPU"></a>第三站：执行引擎 - JVM的CPU</h2><p>有了代码（Class对象），有了内存（运行时数据区），接下来就需要一个“CPU”来执行这些代码。执行引擎（Execution Engine） 就扮演了这个角色。</p>
+<p>它拿到字节码后，如何执行呢？主要有两种方式：</p>
+<p>解释器（Interpreter）: 像一个同声传译。它读取字节码，一行一行地解释成机器码并执行。优点是启动快，但对于重复执行的代码（热点代码），每次都要重新解释，效率较低。</p>
+<p>即时编译器（JIT Compiler）: JVM的性能功臣。它会在程序运行时，把那些被频繁调用的“热点代码”直接编译成当前平台最高效的本地机器码，并缓存起来。下次再执行这段代码时，直接运行编译好的机器码，速度飞快。</p>
+<p>现代JVM（如HotSpot）都采用解释器与JIT编译器混合的模式，兼顾了启动速度和长期运行的性能。</p>
+<h2 id="特别篇：垃圾回收-默默无闻的管家"><a href="#特别篇：垃圾回收-默默无闻的管家" class="headerlink" title="特别篇：垃圾回收 - 默默无闻的管家"></a>特别篇：垃圾回收 - 默默无闻的管家</h2><p>既然堆里存放了那么多对象，内存总有被用完的一天。如果手动管理内存（像C++那样），将是一场噩梦。Java的伟大之处在于它有垃圾回收（Garbage Collection, GC） 机制，这位“管家”会自动清理不再使用的对象，释放内存。</p>
+<p>如何判断对象是“垃圾”？<br>主流JVM采用的是可达性分析算法（Reachability Analysis）。<br>原理很简单：从一系列被称为“GC Roots”的根对象（比如虚拟机栈中引用的对象、静态变量引用的对象等）开始，向下搜索。凡是能从GC Roots通过引用链访问到的对象，都被认为是“存活”的；反之，就是“垃圾”。</p>
+<p>常见的垃圾回收算法<br>标记-清除（Mark-Sweep）: 先标记出所有存活对象，然后统一清除所有未被标记的对象。缺点是容易产生大量内存碎片。</p>
+<p>标记-复制（Mark-Copy）: 将内存分为两块，每次只用其中一块。GC时，将存活对象复制到另一块空闲内存上，然后把当前这块全部清空。优点是无碎片，但浪费了一半的内存空间。</p>
+<p>标记-整理（Mark-Compact）: 先标记存活对象，然后把它们全部向内存的一端移动，最后清理掉端边界以外的内存。</p>
+<p>分代收集（Generational Collection）<br>这是现代JVM最核心的GC策略。研究发现，绝大多数Java对象都是“短命”的。于是，GC将堆分为了新生代（Young Generation） 和 老年代（Old Generation）。</p>
+<p>新生代: 存放新创建的对象。每次GC时，大量对象被回收。采用标记-复制算法，效率高。</p>
+<p>老年代: 新生代里经过数次GC还“健在”的对象，会被晋升到老年代。老年代的对象生命周期长，GC频率低。采用标记-清除或标记-整理算法。</p>
+<p>这种“区别对待”的策略，极大地提升了GC的效率。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>回顾我们的旅程：<br>一份.java代码，经过编译，由类加载器搬进JVM的运行时数据区。然后，执行引擎通过解释和即时编译技术执行代码，期间产生的对象在堆中诞生与消亡。而垃圾回收器则像一位不知疲倦的管家，时刻保持着内存的整洁。</p>
+<p>理解JVM，不仅仅是为了应付面试。它能让你写出更高效、更稳定的代码，能在遇到OOM、StackOverflow等棘手问题时，拥有从容定位和解决问题的能力。这，就是高级程序员和普通程序员之间真正的分水岭。</p>
+<p>希望这次的JVM之旅对你有所启发！</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/10/java-jvm-core-principles/" data-id="cmbqhmrvu000118ne04oqh7kq" data-title="Java JVM核心原理与机制" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://example.com/2025/06/10/java-jvm-core-principles/" data-id="cmbqiqaux0002tgne9l8de8fq" data-title="Java JVM核心原理与机制" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -367,7 +355,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/10/jdk-source-code-analysis/" data-id="cmbqhmrvv000218negajr0uyd" data-title="JDK源码深度解析：集合与并发工具类" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://example.com/2025/06/10/jdk-source-code-analysis/" data-id="cmbqiqauw0001tgnegu1gezvw" data-title="JDK源码深度解析：集合与并发工具类" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
@@ -420,7 +408,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/06/10/hello-world/" data-id="cmbqhmrvs000018negm0xa163" data-title="Hello World" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      <a data-url="http://example.com/2025/06/10/hello-world/" data-id="cmbqiqauu0000tgne1hvwerzz" data-title="Hello World" class="article-share-link"><span class="fa fa-share">分享</span></a>
       
       
       
